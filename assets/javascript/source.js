@@ -7,14 +7,14 @@ var inputWord = ["b","a","l","l"];
 var reqLetters = [];
 var guessArray = [];
 //instantiate empty object to hold letters and their positions
-var WordHolderObject = {};
+var WordObject = {};
 
 
 //instantiate array for holding the letters and their positions
 for (var i=0;i<inputWord.length;i++){
 
   guessArray[i] = "_";
-  WordHolderObject[inputWord[i]] = [];
+  WordObject[inputWord[i]] = [];
 
 }
 
@@ -25,40 +25,37 @@ for (var i=0;i<inputWord.length;i++){
 
   //set the key's corresponding value
     var value = i;
-    WordHolderObject[key].push(i);
+    WordObject[key].push(i);
 
 }
 
-console.log(WordHolderObject);
+console.log(WordObject);
 
-//if input value == iterate through object keys
-var input = "l";
-var objectKeysArray = Object.keys(WordHolderObject);
-console.log(objectKeysArray);
 
-//logic that will go thru the objectKeysArray and check if the keyboard input matches a letter needed
-// for(var i = 0; i<objectKeysArray.length;i++){
-//   if(input == objectKeysArray[i]){
-//     //logic to update guessArray
-//     var letterIndex = WordHolderObject[input];
-//     console.log(letterIndex);
-//   }
-// }
 
-//logic that will go thru the objectKeysArray and check if the keyboard input matches a letter needed
-for(var key in WordHolderObject){
-  if(input == key){
-    //logic to update guessArray
-    var letterIndex = WordHolderObject[key];
-    console.log(letterIndex);
+document.onkeyup = function(event){
 
-    //loop to fill in the guess word array with the correctly guessed letters
-    for(var i=0;i<letterIndex.length;i++){
-      guessArray[letterIndex[i]] = key;
+  var input = event.key;
+  console.log(input);
+
+  //logic that will go thru the objectKeysArray and check if the keyboard input matches a letter needed
+  for(var key in WordObject){
+    if(input == key){
+      //logic to update guessArray
+      var letterIndex = WordObject[key];
+      console.log(letterIndex);
+
+      //loop to fill in the guess word array with the correctly guessed letters
+      for(var i=0;i<letterIndex.length;i++){
+        guessArray[letterIndex[i]] = key;
+
+      }
+      console.log(guessArray);
 
     }
-    console.log(guessArray);
 
   }
-
 }
+
+var objectKeysArray = Object.keys(WordObject);
+console.log(objectKeysArray);
