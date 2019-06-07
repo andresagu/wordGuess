@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <title></title>
   </head>
   <body>
 
-<div class="container">
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Press Here to Start
-</button>
+<div class="container" id = "mainContainer">
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -30,11 +26,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Welcome Player One, this is a 2 player word-guess game in which you set the word.<p>
+        <p id= "gameIntro">Welcome Player One,<p>
+        <p id= "gameIntro">This is a 2 player word-guess game in which you set the word. Enter your word now and press "ENTER" to begin<p>
+        <p id= "gameIntro">Enter your word now and press "ENTER" to begin<p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <span class = "inputWord">Word:</span>
+        <span id = "inputWord" class = "inputWord"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Press Spacebar to Begin
+      </button>
+
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <span class = "guessWord">Guessed:</span>
+        <span id = "guessWord" class = "guessWord"></span>
       </div>
     </div>
   </div>
@@ -45,11 +67,13 @@
 
 
 
-    <!-- Optional JavaScript -->
-    <script src="assets/javascript/source.js"></script>
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Optional JavaScript -->
+    <script src="assets/javascript/source.js"></script>
   </body>
 </html>

@@ -108,6 +108,14 @@ document.onkeyup = function(event){
   if(gameSetupOn && input != space){
     console.log("inputting words to the inputWordArray");
     inputWordArray.push(input);
+
+
+    //Will udpate the UI here for the input word
+
+    var inputWordDispay = inputWordArray.join(" ");
+    document.getElementById("inputWord").innerHTML = inputWordDispay;
+
+
     console.log(inputWordArray);
   }
 
@@ -147,6 +155,11 @@ console.log("game is on: inside the game logic");
       //add correct letter to the guessedLettersArray
       guessedLettersArray.push(input);
 
+      //Will udpate the UI here for the guessed word
+
+      var guessWordDisplay = guessArray.join(" ");
+      document.getElementById("guessWord").innerHTML = guessWordDisplay;
+
       //breaks for loop hopefully as soon as this condition is satisfied so it doesn't keep trying the other keys
       break;
 
@@ -183,6 +196,28 @@ else if (!letterMatch && input != enter && numTries>0){
 console.log("you're outside the game logic")
 
 }
+
+$(document).ready(function(){
+
+
+  $(document).keypress(function(event){
+
+    var input = event.key;
+    console.log("this is the jquery input " + input);
+    if(input == " " && !gameSetupOn){
+      $('#exampleModalCenter').modal('show');
+
+    }
+
+    else if(input == "Enter" && gameSetupOn){
+    $('#exampleModalCenter').modal('hide');
+    $('.collapse').collapse();
+  }
+
+});
+
+});
+
 
 //This is also most likely not needed at all once the whole game is implemented
 console.log("this is outside the key event for some reason");

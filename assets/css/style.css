@@ -1,0 +1,33 @@
+.btn {
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 24pt;
+}
+
+#mainContainer{
+  text-align: center;
+  padding-top: 100px;
+}
+
+#gameIntro{
+  text-align: left;
+}
+
+.guessWord{
+  font-size: 24pt;
+}
+.modal-body{
+  font-size: 16pt;
+
+}
+.modal-footer{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-size: 24pt;
+}
+
+.modal-title{
+  font-size: 28pt;
+}
