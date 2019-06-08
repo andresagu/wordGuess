@@ -30,6 +30,9 @@ var numTries = 8;
 //instantiate empty object to hold letters and their positions
 var WordObject = {};
 
+//instantiate empty object that will hold letters that have been guessed without tracking duplicates
+var WordsGuesedObject = {};
+
 //wrapped the object setup into 2 functions. one for creating the placeholders and one for filling it
 function setupWordObject(){
 //instantiate array for holding the letters and their positions
@@ -62,8 +65,31 @@ console.log(WordObject);
 reqLetters = Object.keys(WordObject);
 console.log(reqLetters);
 
+}
+
+
+//will fill the WordsGuesedObj and update the UI to show which words have been guessedLettersArray
+//takes in input as a parameter and pushes it as a key for the WordsGuesedObj
+
+function updateGuesses(value){
+
+  var key =value;
+//So there may be a way to do this using less memory but
+//but since objects don't take in duplicates this may be a good way to do this with less memory and quicker lookups
+//using the boolean as a place holder only
+  WordsGuesedObject[key] = true;
 
 }
+
+//LOGIC TO BE USED FOR UI UPDATES//
+
+//keep track of game start so that no more spacebar inputs are allowed
+//more than 1 space will not work
+//also instantiate count for enter key
+var spaceCount = 0;
+var enterCount = 0;
+
+
 
 
 //This onkeyup will most likely run the game but there should be another key event that requires pressing the space bar to setup the game and a few key events to setup the word in general
@@ -83,13 +109,15 @@ document.onkeyup = function(event){
   //This is reset every key event since the word isn't a match until it's proven a match in the for loop...
   var letterMatch = false;
 
-  if(input == space){
+  if(input == space && spaceCount<1){
 
     gameSetupOn = true;
+    spaceCount++;
     console.log("game setup is on");
   }
   //once the enter key is pressed to start the game and the gameSetupOn is false meaning the game is no longer setting up and is ready to play
-  else if(input == enter && gameSetupOn){
+  //spacecount allows enter to be read into the input if space has been hit once before
+  else if(input == enter && gameSetupOn && spaceCount>0){
 
     gameStart=true;
     gameSetupOn = false;
@@ -105,7 +133,7 @@ document.onkeyup = function(event){
 
 
 //This should only run during game setup and ignores spaces so for now no words with spaces can be entered
-  if(gameSetupOn && input != space){
+  if(gameSetupOn && input != space && input != enter && input != "Backspace"){
     console.log("inputting words to the inputWordArray");
     inputWordArray.push(input);
 
@@ -123,7 +151,7 @@ document.onkeyup = function(event){
 
 
 //This check is in place to only run the game logic once the game is setup and started
-if(gameSetupOn==false && gameStart == true){
+if(gameSetupOn==false && gameStart == true && input != space && input != enter){
 
 console.log("game is on: inside the game logic");
 
@@ -153,10 +181,8 @@ console.log("game is on: inside the game logic");
       console.log("Here's what's been guessed "+ guessArray + " I'm going to break now");
 
       //add correct letter to the guessedLettersArray
-      guessedLettersArray.push(input);
 
       //Will udpate the UI here for the guessed word
-
       var guessWordDisplay = guessArray.join(" ");
       document.getElementById("guessWord").innerHTML = guessWordDisplay;
 
@@ -164,6 +190,7 @@ console.log("game is on: inside the game logic");
       break;
 
     }
+
 
   }
 //logic for either wrong guesses or the game being won
@@ -189,6 +216,17 @@ else if (!letterMatch && input != enter && numTries>0){
 
 }
 
+//UPDATE THE WordsGuesedObject and UI
+updateGuesses(input);
+guessedLettersArray = Object.keys(WordsGuesedObject);
+console.log("should be all guesses " + guessedLettersArray);
+//Will udpate the UI here for the guessed word
+var guessedWordTrackerDisplay = guessedLettersArray.join(", ");
+document.getElementById("guessedWordTrackerDisplay").innerHTML = guessedWordTrackerDisplay;
+
+//ALSO UPDATE NUMTRIES HERE // TODO:
+document.getElementById("numTries").innerHTML = numTries;
+
 
 }
 
@@ -204,7 +242,7 @@ $(document).ready(function(){
 
     var input = event.key;
     console.log("this is the jquery input " + input);
-    if(input == " " && !gameSetupOn){
+    if(input == " " && !gameSetupOn && spaceCount<1){
       $('#exampleModalCenter').modal('show');
 
     }

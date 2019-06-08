@@ -31,3 +31,12 @@
 .modal-title{
   font-size: 28pt;
 }
+
+.col-3{
+  font-size: 20pt;
+}
+
+.col-9{
+  text-align: left;
+  font-size: 20pt;
+}
