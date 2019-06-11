@@ -161,6 +161,8 @@ console.log("game is on: inside the game logic");
     //checks to see if input is equal to one of the required words and also checks to see if the game has been completed
     //by checking the array lengths of the guessed word array vs the input word array
     if(input == key){
+
+
       console.log("you guessed the right letter")
       letterMatch = true;
 
@@ -197,7 +199,7 @@ console.log("game is on: inside the game logic");
 //This is running outside the for loop because it only needs to know that the letter didn't match any of the keys
 
 //This first if statement checks to see if you've won already
-if(guessedLettersArray.length == reqLetters.length){
+if(guessArray.length == reqLetters.length){
   console.log("you won");
   gameEndWon = true;
 }
@@ -218,10 +220,10 @@ else if (!letterMatch && input != enter && numTries>0){
 
 //UPDATE THE WordsGuesedObject and UI
 updateGuesses(input);
-guessedLettersArray = Object.keys(WordsGuesedObject);
-console.log("should be all guesses " + guessedLettersArray);
+var newGuessedLettersArray = Object.keys(WordsGuesedObject);
+console.log("should be all guesses " + newGuessedLettersArray);
 //Will udpate the UI here for the guessed word
-var guessedWordTrackerDisplay = guessedLettersArray.join(", ");
+var guessedWordTrackerDisplay = newGuessedLettersArray.join(", ");
 document.getElementById("guessedWordTrackerDisplay").innerHTML = guessedWordTrackerDisplay;
 
 //ALSO UPDATE NUMTRIES HERE // TODO:
